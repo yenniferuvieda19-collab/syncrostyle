@@ -17,8 +17,12 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
-    {
-        //
+  use Illuminate\Support\Facades\URL; // Recuerda importar la clase facade
+
+public function boot(): void
+{
+    if (config('app.env') === 'production') {
+        URL::forceScheme('https');
     }
+}
 }
